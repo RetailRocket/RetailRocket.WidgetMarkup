@@ -1,0 +1,33 @@
+<header class="retailrocket-widgettitle">
+<%=headerText%>
+<% if (typeof subHeaderText !== "undefined") { %>
+    <small><%=subHeaderText %></small>
+<% } %>
+</header>
+<ul class="retailrocket-items">
+    <% for (var i = 0 ; i < numberOfItems; ++i) with(items[i]) { %>
+        <li class="retailrocket-item" style="width:<%=itemImageWidth%>px;">
+            <a class="retailrocket-item-info" href="<%=Url%>" onmousedown=\'retailrocket.widget.click(<%=ItemId%>,"<%=suggesterId%>","<%=algorithm%>") \'>
+                <div class="retailrocket-item-image"> 
+                   <img onerror="retailrocket.widget.hideProduct(this)" src="//cdnimg.retailrocket.net/api/1.0/partner/<%=partnerId%>/item/<%=ItemId%>/picture/?format=png&width=<%=itemImageWidth%>&height=<%=itemImageHeight%>&scale=both" style="width:<%=itemImageWidth%>px;height:<%=itemImageHeight%>px"></div>
+                <div class="retailrocket-item-brand">
+                    <%=Vendor %>
+                </div>
+                <div class="retailrocket-item-title">
+                    <%=Name %>
+                </div>
+                <div class="retailrocket-item-description">
+                    <%=Description %>
+                </div>
+            </a>
+            <% if (OldPrice) { %>
+                <div class="retailrocket-item-old-price"> <span class="retailrocket-item-old-price-value"><%= OldPrice %></span> <span class="retailrocket-item-price-currency"></span> </div>
+            <% } %>
+            <div class="retailrocket-item-price"> <span class="retailrocket-item-price-value"><%= Price %></span> <span class="retailrocket-item-price-currency"></span> </div>
+            <nav class="retailrocket-actions">
+                <a class="retailrocket-actions-more" href="<%=Url%>" onmousedown=\'retailrocket.widget.click(<%=ItemId%>,"<%=suggesterId%>","<%=algorithm%>")\'></a>
+                <a class="retailrocket-actions-buy" href="<%=Url%>" onclick=\'return retailrocket._widgetAddToBasket("<%=ItemId%>", "<%=onAddToBasket%>")\'></a>
+            </nav>
+        </li>
+   <% } %>
+</ul>
